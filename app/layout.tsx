@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     siteName: "G4-Learning",
     images: [
       {
-        url: "/og-image.png",
+        url: "/thumbnail.png",
         width: 1200,
         height: 630,
         alt: "G4-Learning Preview",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     title: "G4-Learning | Free Online Learning Platform",
     description:
       "Free digital lessons for students across Cambodia, aligned with the national curriculum.",
-    images: ["/og-image.png"],
+    images: ["/thumbnail.png"],
   },
 };
 
