@@ -18,6 +18,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://e-learning-project-ivory.vercel.app"),
   title: "G4-Learning | Free Online Learning Platform",
   description:
     "Free digital lessons for students across Cambodia, aligned with the national curriculum.",
