@@ -21,6 +21,30 @@ export const metadata: Metadata = {
   title: "G4-Learning | Free Online Learning Platform",
   description:
     "Free digital lessons for students across Cambodia, aligned with the national curriculum.",
+  openGraph: {
+    title: "G4-Learning | Free Online Learning Platform",
+    description:
+      "Free digital lessons for students across Cambodia, aligned with the national curriculum.",
+    url: "https://e-learning-project-ivory.vercel.app",
+    siteName: "G4-Learning",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "G4-Learning Preview",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "G4-Learning | Free Online Learning Platform",
+    description:
+      "Free digital lessons for students across Cambodia, aligned with the national curriculum.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
