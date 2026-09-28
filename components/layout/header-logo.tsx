@@ -13,12 +13,12 @@ export default function HeaderLogo() {
           <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z" />
         </svg>
       </span>
-      <span className="flex flex-col leading-none">
-        <span className="text-lg font-bold tracking-tight text-brand-800">G4-Learning</span>
-        <span className="text-[10px] font-medium uppercase tracking-widest text-slate-500">
-          E-Learning Platform
+        <span className="flex flex-col leading-none">
+          <span className="text-lg font-bold tracking-tight text-brand-800">G4-Learning</span>
+          <span className="hidden text-[10px] font-medium uppercase tracking-widest text-slate-500 min-[380px]:flex">
+            E-Learning Platform
+          </span>
         </span>
-      </span>
     </Link>
   );
 }

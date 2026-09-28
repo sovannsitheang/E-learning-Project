@@ -1,25 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useSyncExternalStore } from "react";
-import {
-  clearSession,
-  getAuthUser,
-  setAuthHydrated,
-  subscribeAuth,
-} from "@/lib/auth";
-import type { AuthUser } from "@/lib/api/auth";
+import { clearSession } from "@/lib/auth";
+import { useAuthUser } from "@/lib/use-auth-user";
 
 export default function AuthControls() {
-  const user = useSyncExternalStore<AuthUser | null>(
-    subscribeAuth,
-    getAuthUser,
-    () => null,
-  );
-
-  useEffect(() => {
-    setAuthHydrated();
-  }, []);
+  const user = useAuthUser();
 
   function handleLogout() {
     clearSession();
@@ -36,7 +22,7 @@ export default function AuthControls() {
         </Link>
         <Link
           href="/register"
-          className="inline-flex h-10 items-center rounded-lg bg-brand-600 px-6 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-700"
+          className="inline-flex h-10 items-center rounded-lg bg-brand-600 px-4 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-700 sm:px-6"
         >
           Register
         </Link>
