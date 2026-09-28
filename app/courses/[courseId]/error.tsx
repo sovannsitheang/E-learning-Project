@@ -9,15 +9,15 @@ export default function CourseDetailError({
   retry: () => void;
 }) {
   return (
-    <section className="bg-white py-20">
+    <section className="bg-surface py-20">
       <div className="mx-auto max-w-xl px-4 text-center sm:px-6">
-        <p className="text-sm font-medium uppercase tracking-widest text-brand-600">
+        <p className="text-sm font-medium uppercase tracking-widest text-accent">
           Something went wrong
         </p>
-        <h1 className="mt-3 font-serif text-3xl font-semibold tracking-tight text-slate-900">
+        <h1 className="mt-3 font-serif text-3xl font-semibold tracking-tight text-fg">
           We couldn&apos;t load this course
         </h1>
-        <p className="mt-3 text-base leading-relaxed text-slate-600">
+        <p className="mt-3 text-base leading-relaxed text-fg-muted">
           Our servers are unreachable right now. Please try again in a moment.
         </p>
         <div className="mt-8 flex items-center justify-center gap-3">
@@ -29,7 +29,7 @@ export default function CourseDetailError({
           </button>
           <Link
             href="/courses"
-            className="inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 px-6 text-sm font-semibold text-brand-700 transition-colors hover:bg-brand-100"
+            className="inline-flex h-11 items-center justify-center rounded-lg border border-accent-line px-6 text-sm font-semibold text-accent transition-colors hover:bg-accent-subtle"
           >
             Browse courses
           </Link>

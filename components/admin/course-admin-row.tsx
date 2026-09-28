@@ -32,15 +32,15 @@ export default function CourseAdminRow({ course }: { course: Course }) {
   }
 
   return (
-    <div className="flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:flex-row sm:items-center">
+    <div className="flex flex-col gap-4 rounded-2xl border border-line bg-surface p-5 shadow-sm sm:flex-row sm:items-center">
       <div className="min-w-0 flex-1">
-        <h3 className="truncate font-semibold text-slate-900">{course.title}</h3>
-        <p className="mt-1 text-sm text-slate-500">
+        <h3 className="truncate font-semibold text-fg">{course.title}</h3>
+        <p className="mt-1 text-sm text-fg-muted">
           {course.lessonCount} lessons · {course.enrolledCount} students
           {course.thumbnailUrl ? null : " · no thumbnail"}
         </p>
         {error ? (
-          <p role="alert" className="mt-2 text-sm text-red-700">
+          <p role="alert" className="mt-2 text-sm text-danger">
             {error}
           </p>
         ) : null}
@@ -48,14 +48,14 @@ export default function CourseAdminRow({ course }: { course: Course }) {
       <div className="flex shrink-0 items-center gap-2">
         <Link
           href={`/admin/courses/${course.id}`}
-          className="inline-flex h-10 items-center justify-center rounded-lg border border-slate-300 px-4 text-sm font-medium text-slate-700 transition-colors hover:border-brand-600 hover:text-brand-700"
+          className="inline-flex h-10 items-center justify-center rounded-lg border border-line-strong px-4 text-sm font-medium text-fg-secondary transition-colors hover:border-accent-line hover:text-accent"
         >
           Lessons
         </Link>
         <button
           type="button"
           onClick={() => setEditing(true)}
-          className="inline-flex h-10 items-center justify-center rounded-lg border border-slate-300 px-4 text-sm font-medium text-slate-700 transition-colors hover:border-brand-600 hover:text-brand-700"
+          className="inline-flex h-10 items-center justify-center rounded-lg border border-line-strong px-4 text-sm font-medium text-fg-secondary transition-colors hover:border-accent-line hover:text-accent"
         >
           Edit
         </button>
@@ -63,7 +63,7 @@ export default function CourseAdminRow({ course }: { course: Course }) {
           type="button"
           onClick={handleDelete}
           disabled={deleting}
-          className="inline-flex h-10 items-center justify-center rounded-lg border border-red-200 px-4 text-sm font-medium text-red-700 transition-colors hover:border-red-300 hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex h-10 items-center justify-center rounded-lg border border-danger-line px-4 text-sm font-medium text-danger transition-colors hover:border-danger-line hover:bg-danger-subtle disabled:cursor-not-allowed disabled:opacity-60"
         >
           {deleting ? "Deleting..." : "Delete"}
         </button>

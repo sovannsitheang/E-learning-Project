@@ -21,8 +21,8 @@ export default function Button({
     "inline-flex h-11 items-center justify-center rounded-lg px-6 text-sm font-semibold transition-colors";
   const variants: Record<string, string> = {
     primary: "bg-brand-600 text-white hover:bg-brand-700",
-    outline: "border border-brand-600 text-brand-700 hover:bg-brand-100",
-    ghost: "text-brand-700 hover:bg-brand-100",
+    outline: "border border-accent-line text-accent hover:bg-accent-subtle",
+    ghost: "text-accent hover:bg-accent-subtle",
   };
 
   return href ? (

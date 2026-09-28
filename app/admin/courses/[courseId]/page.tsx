@@ -30,37 +30,37 @@ export default async function AdminCoursePage({
 
   return (
     <AdminGuard>
-      <section className="bg-slate-50 py-14">
+      <section className="bg-surface-muted py-14">
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
-          <nav className="text-xs text-slate-500">
+          <nav className="text-xs text-fg-muted">
             <ol className="flex items-center gap-2">
               <li>
-                <Link href="/admin" className="hover:text-brand-700">
+                <Link href="/admin" className="hover:text-accent">
                   Manage courses
                 </Link>
               </li>
               <li>/</li>
-              <li className="text-slate-700">
+              <li className="text-fg-secondary">
                 {unavailable ? "Course" : course?.title}
               </li>
             </ol>
           </nav>
 
           {unavailable ? (
-            <p className="mt-8 rounded-2xl border border-slate-200 bg-white p-6 text-sm text-slate-600">
+            <p className="mt-8 rounded-2xl border border-line bg-surface p-6 text-sm text-fg-muted">
               We couldn&apos;t reach the server right now. Please try again in a
               moment.
             </p>
           ) : course ? (
             <>
               <div className="mt-4">
-                <p className="text-xs font-semibold uppercase tracking-widest text-brand-600">
+                <p className="text-xs font-semibold uppercase tracking-widest text-accent">
                   Admin · Course editor
                 </p>
-                <h1 className="mt-2 font-serif text-3xl font-semibold tracking-tight text-slate-900">
+                <h1 className="mt-2 font-serif text-3xl font-semibold tracking-tight text-fg">
                   {course.title}
                 </h1>
-                <p className="mt-2 text-sm text-slate-500">{course.description}</p>
+                <p className="mt-2 text-sm text-fg-muted">{course.description}</p>
               </div>
               <LessonManager
                 courseId={courseId}

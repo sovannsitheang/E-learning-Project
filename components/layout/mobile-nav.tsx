@@ -5,9 +5,10 @@ import { useEffect, useRef, useState } from "react";
 import { clearSession } from "@/lib/auth";
 import { useAuthUser } from "@/lib/use-auth-user";
 import { navItems } from "@/lib/utils";
+import ThemeToggle from "@/components/layout/theme-toggle";
 
 const linkClassName =
-  "rounded-lg px-4 py-3 text-sm font-medium text-slate-700 transition-colors hover:bg-brand-100 hover:text-brand-700";
+  "rounded-lg px-4 py-3 text-sm font-medium text-fg-secondary transition-colors hover:bg-accent-subtle hover:text-accent";
 
 export default function MobileNav() {
   const [open, setOpen] = useState(false);
@@ -48,7 +49,7 @@ export default function MobileNav() {
         aria-expanded={open}
         aria-controls="mobile-nav-menu"
         aria-label={open ? "Close menu" : "Open menu"}
-        className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 text-slate-700 transition-colors hover:border-brand-600 hover:text-brand-700"
+        className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-line text-fg-secondary transition-colors hover:border-accent-line hover:text-accent"
       >
         {open ? (
           <svg
@@ -73,7 +74,7 @@ export default function MobileNav() {
       {open ? (
         <div
           id="mobile-nav-menu"
-          className="absolute inset-x-0 top-full max-h-[calc(100dvh-4rem)] overflow-y-auto border-b border-slate-100 bg-white shadow-lg"
+          className="absolute inset-x-0 top-full max-h-[calc(100dvh-4rem)] overflow-y-auto border-b border-line-soft bg-surface shadow-lg"
         >
           <div className="mx-auto max-w-7xl px-4 pb-3 pt-2 sm:px-6">
             <nav className="flex flex-col">
@@ -88,7 +89,13 @@ export default function MobileNav() {
                 </Link>
               ))}
             </nav>
-            <div className="mt-1 flex flex-col border-t border-slate-100 pt-2">
+            <div className="mt-1 flex flex-col border-t border-line-soft pt-2">
+              <div className="flex items-center justify-between rounded-lg px-4 py-2 sm:hidden">
+                <span className="text-sm font-medium text-fg-secondary">
+                  Dark mode
+                </span>
+                <ThemeToggle />
+              </div>
               {user ? (
                 <>
                   <div className="flex items-center gap-2.5 px-4 py-2">
@@ -96,10 +103,10 @@ export default function MobileNav() {
                       {user.name.charAt(0).toUpperCase()}
                     </span>
                     <span className="flex min-w-0 flex-col leading-tight">
-                      <span className="truncate text-sm font-semibold text-slate-900">
+                      <span className="truncate text-sm font-semibold text-fg">
                         {user.name}
                       </span>
-                      <span className="text-xs capitalize text-slate-500">
+                      <span className="text-xs capitalize text-fg-muted">
                         {user.role}
                       </span>
                     </span>
@@ -123,7 +130,7 @@ export default function MobileNav() {
                   <button
                     type="button"
                     onClick={handleLogout}
-                    className="rounded-lg px-4 py-3 text-left text-sm font-medium text-slate-700 transition-colors hover:bg-brand-100 hover:text-brand-700"
+                    className="rounded-lg px-4 py-3 text-left text-sm font-medium text-fg-secondary transition-colors hover:bg-accent-subtle hover:text-accent"
                   >
                     Log out
                   </button>

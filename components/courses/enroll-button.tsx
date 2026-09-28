@@ -65,7 +65,7 @@ export default function EnrollButton({ courseId }: { courseId: string }) {
       {error ? (
         <p
           role="alert"
-          className="mb-3 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
+          className="mb-3 rounded-xl border border-danger-line bg-danger-subtle px-4 py-3 text-sm text-danger"
         >
           {error}
         </p>
@@ -86,7 +86,7 @@ export default function EnrollButton({ courseId }: { courseId: string }) {
           <button
             type="button"
             onClick={handleUnenroll}
-            className="mt-2 inline-flex h-10 w-full cursor-pointer items-center justify-center rounded-lg border border-slate-300 px-6 text-sm font-medium text-slate-600 transition-colors hover:border-red-300 hover:bg-red-50 hover:text-red-700"
+            className="mt-2 inline-flex h-10 w-full cursor-pointer items-center justify-center rounded-lg border border-line-strong px-6 text-sm font-medium text-fg-muted transition-colors hover:border-danger-line hover:bg-danger-subtle hover:text-danger"
           >
             Remove from My Courses
           </button>

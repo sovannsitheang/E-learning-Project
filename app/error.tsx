@@ -9,15 +9,15 @@ export default function RootError({
   retry: () => void;
 }) {
   return (
-    <section className="flex flex-1 items-center justify-center bg-slate-50 px-4 py-20 sm:px-6">
+    <section className="flex flex-1 items-center justify-center bg-surface-muted px-4 py-20 sm:px-6">
       <div className="mx-auto max-w-xl text-center">
-        <p className="text-sm font-medium uppercase tracking-widest text-brand-600">
+        <p className="text-sm font-medium uppercase tracking-widest text-accent">
           Something went wrong
         </p>
-        <h1 className="mt-3 font-serif text-3xl font-semibold tracking-tight text-slate-900">
+        <h1 className="mt-3 font-serif text-3xl font-semibold tracking-tight text-fg">
           We ran into an unexpected error
         </h1>
-        <p className="mt-3 text-base leading-relaxed text-slate-600">
+        <p className="mt-3 text-base leading-relaxed text-fg-muted">
           This may be temporary. Please try again, or head back to home and
           keep learning.
         </p>
@@ -30,7 +30,7 @@ export default function RootError({
           </button>
           <Link
             href="/"
-            className="inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 px-6 text-sm font-semibold text-brand-700 transition-colors hover:bg-brand-100"
+            className="inline-flex h-11 items-center justify-center rounded-lg border border-accent-line px-6 text-sm font-semibold text-accent transition-colors hover:bg-accent-subtle"
           >
             Back to home
           </Link>

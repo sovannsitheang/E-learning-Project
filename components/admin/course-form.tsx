@@ -7,9 +7,9 @@ import { createCourse, updateCourse } from "@/lib/api/courses";
 import type { Course } from "@/lib/types";
 
 const inputClass =
-  "mt-1.5 h-11 w-full rounded-xl border border-slate-300 bg-white px-4 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20";
+  "mt-1.5 h-11 w-full rounded-xl border border-line-strong bg-surface px-4 text-sm text-fg placeholder:text-fg-subtle focus:border-accent-line focus:outline-none focus:ring-2 focus:ring-accent-line/20";
 const textareaClass =
-  "mt-1.5 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20";
+  "mt-1.5 w-full rounded-xl border border-line-strong bg-surface px-4 py-3 text-sm text-fg placeholder:text-fg-subtle focus:border-accent-line focus:outline-none focus:ring-2 focus:ring-accent-line/20";
 
 interface CourseFormModalProps {
   course?: Course | null;
@@ -58,13 +58,13 @@ export function CourseFormModal({ course, onClose }: CourseFormModalProps) {
         onClick={onClose}
         aria-hidden="true"
       />
-      <div className="relative w-full max-w-lg rounded-3xl border border-slate-200 bg-white p-8 shadow-xl">
-        <h2 className="text-xl font-bold tracking-tight text-slate-900">
+      <div className="relative w-full max-w-lg rounded-3xl border border-line bg-surface p-8 shadow-xl">
+        <h2 className="text-xl font-bold tracking-tight text-fg">
           {editing ? "Edit course" : "Create course"}
         </h2>
         <form className="mt-6 space-y-5" onSubmit={handleSubmit}>
           <label className="block">
-            <span className="text-sm font-medium text-slate-700">Title</span>
+            <span className="text-sm font-medium text-fg-secondary">Title</span>
             <input
               type="text"
               required
@@ -75,7 +75,7 @@ export function CourseFormModal({ course, onClose }: CourseFormModalProps) {
             />
           </label>
           <label className="block">
-            <span className="text-sm font-medium text-slate-700">Description</span>
+            <span className="text-sm font-medium text-fg-secondary">Description</span>
             <textarea
               required
               value={description}
@@ -86,7 +86,7 @@ export function CourseFormModal({ course, onClose }: CourseFormModalProps) {
             />
           </label>
           <label className="block">
-            <span className="text-sm font-medium text-slate-700">Thumbnail URL</span>
+            <span className="text-sm font-medium text-fg-secondary">Thumbnail URL</span>
             <input
               type="url"
               value={thumbnail}
@@ -98,7 +98,7 @@ export function CourseFormModal({ course, onClose }: CourseFormModalProps) {
           {error ? (
             <p
               role="alert"
-              className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
+              className="rounded-xl border border-danger-line bg-danger-subtle px-4 py-3 text-sm text-danger"
             >
               {error}
             </p>
@@ -107,7 +107,7 @@ export function CourseFormModal({ course, onClose }: CourseFormModalProps) {
             <button
               type="button"
               onClick={onClose}
-              className="inline-flex h-11 items-center justify-center rounded-lg border border-slate-300 px-6 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50"
+              className="inline-flex h-11 items-center justify-center rounded-lg border border-line-strong px-6 text-sm font-medium text-fg-secondary transition-colors hover:bg-surface-muted"
             >
               Cancel
             </button>

@@ -22,14 +22,14 @@ export default async function Stats() {
   ];
 
   return (
-    <section className="bg-white py-20 sm:py-28">
+    <section className="bg-surface py-20 sm:py-28">
       <div className="mx-auto grid max-w-7xl items-center gap-14 px-4 sm:px-6 lg:grid-cols-2">
         <div className="relative order-2 lg:order-1">
-          <div className="overflow-hidden rounded-3xl bg-honeydew p-10 sm:p-12">
-            <p className="text-5xl text-brand-600" aria-hidden="true">
+          <div className="overflow-hidden rounded-3xl bg-surface-muted p-10 sm:p-12">
+            <p className="text-5xl text-accent" aria-hidden="true">
               &ldquo;
             </p>
-            <p className="mt-2 font-serif text-2xl leading-snug text-slate-900 sm:text-3xl">
+            <p className="mt-2 font-serif text-2xl leading-snug text-fg sm:text-3xl">
               Education is the most powerful weapon which you can use to change
               the world.
             </p>
@@ -41,40 +41,40 @@ export default async function Stats() {
                 </svg>
               </span>
               <div>
-                <p className="text-sm font-semibold text-slate-900">
+                <p className="text-sm font-semibold text-fg">
                   G4-Learning Team
                 </p>
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-fg-muted">
                   Free e-Learning for every student
                 </p>
               </div>
             </div>
           </div>
           <div
-            className="pointer-events-none absolute -right-5 -top-5 h-24 w-24 rounded-full bg-brand-100"
+            className="pointer-events-none absolute -right-5 -top-5 h-24 w-24 rounded-full bg-accent-subtle"
             aria-hidden="true"
           />
         </div>
 
         <div className="order-1 lg:order-2">
-          <p className="text-sm font-medium uppercase tracking-widest text-brand-600">
+          <p className="text-sm font-medium uppercase tracking-widest text-accent">
             Our impact
           </p>
-          <h2 className="mt-3 font-serif text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+          <h2 className="mt-3 font-serif text-3xl font-semibold tracking-tight text-fg sm:text-4xl">
             Reaching learners all over Cambodia
           </h2>
-          <p className="mt-5 max-w-lg text-base leading-relaxed text-slate-600">
+          <p className="mt-5 max-w-lg text-base leading-relaxed text-fg-muted">
             From classrooms in Phnom Penh to rural schools in every province,
             G4-Learning brings the national curriculum to every student — for
             free.
           </p>
           <div className="mt-10 grid grid-cols-3 gap-6">
             {stats.map((stat) => (
-              <div key={stat.label} className="border-l-2 border-brand-600 pl-4">
-                <p className="font-sans text-3xl font-bold tracking-tight text-brand-600 sm:text-4xl">
+              <div key={stat.label} className="border-l-2 border-accent-line pl-4">
+                <p className="font-sans text-3xl font-bold tracking-tight text-accent sm:text-4xl">
                   {stat.value}
                 </p>
-                <p className="mt-1 text-xs font-medium text-slate-500 sm:text-sm">
+                <p className="mt-1 text-xs font-medium text-fg-muted sm:text-sm">
                   {stat.label}
                 </p>
               </div>

@@ -14,8 +14,8 @@ export default function HeaderLogo() {
         </svg>
       </span>
         <span className="flex flex-col leading-none">
-          <span className="text-lg font-bold tracking-tight text-brand-800">G4-Learning</span>
-          <span className="hidden text-[10px] font-medium uppercase tracking-widest text-slate-500 min-[380px]:flex">
+          <span className="text-lg font-bold tracking-tight text-accent">G4-Learning</span>
+          <span className="hidden text-[10px] font-medium uppercase tracking-widest text-fg-muted min-[380px]:flex">
             E-Learning Platform
           </span>
         </span>

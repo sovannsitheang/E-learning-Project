@@ -22,11 +22,11 @@ export default function MyCoursesList({ courses }: { courses: Course[] }) {
 
   if (!user) {
     return (
-      <div className="mt-12 rounded-3xl border border-slate-200 bg-white p-10 text-center shadow-sm">
-        <h2 className="text-lg font-semibold text-slate-900">
+      <div className="mt-12 rounded-3xl border border-line bg-surface p-10 text-center shadow-sm">
+        <h2 className="text-lg font-semibold text-fg">
           Log in to see your courses
         </h2>
-        <p className="mt-2 text-sm text-slate-500">
+        <p className="mt-2 text-sm text-fg-muted">
           Create a free account or log in to keep track of the courses you
           enroll in.
         </p>
@@ -39,7 +39,7 @@ export default function MyCoursesList({ courses }: { courses: Course[] }) {
           </Link>
           <Link
             href="/register"
-            className="inline-flex h-11 items-center rounded-lg border border-brand-600 px-6 text-sm font-semibold text-brand-700 transition-colors hover:bg-brand-100"
+            className="inline-flex h-11 items-center rounded-lg border border-accent-line px-6 text-sm font-semibold text-accent transition-colors hover:bg-accent-subtle"
           >
             Register
           </Link>
@@ -52,11 +52,11 @@ export default function MyCoursesList({ courses }: { courses: Course[] }) {
 
   if (myCourses.length === 0) {
     return (
-      <div className="mt-12 rounded-3xl border border-slate-200 bg-white p-10 text-center shadow-sm">
-        <h2 className="text-lg font-semibold text-slate-900">
+      <div className="mt-12 rounded-3xl border border-line bg-surface p-10 text-center shadow-sm">
+        <h2 className="text-lg font-semibold text-fg">
           You haven&apos;t enrolled in any courses yet
         </h2>
-        <p className="mt-2 text-sm text-slate-500">
+        <p className="mt-2 text-sm text-fg-muted">
           Browse the catalogue and hit &ldquo;Enroll Now&rdquo; on a course to
           add it here.
         </p>
@@ -78,7 +78,7 @@ export default function MyCoursesList({ courses }: { courses: Course[] }) {
           <button
             type="button"
             onClick={() => toggleEnrollment(course.id)}
-            className="mx-auto mt-3 inline-flex h-9 cursor-pointer items-center rounded-lg border border-slate-300 px-4 text-sm font-medium text-slate-600 transition-colors hover:border-red-300 hover:bg-red-50 hover:text-red-700"
+            className="mx-auto mt-3 inline-flex h-9 cursor-pointer items-center rounded-lg border border-line-strong px-4 text-sm font-medium text-fg-muted transition-colors hover:border-danger-line hover:bg-danger-subtle hover:text-danger"
           >
             Unenroll
           </button>

@@ -14,7 +14,7 @@ export default function SubscribeForm() {
 
   if (submitted) {
     return (
-      <p className="mt-5 rounded-lg bg-brand-600/15 px-4 py-3 text-sm text-brand-300">
+      <p className="mt-5 rounded-lg bg-accent-subtle px-4 py-3 text-sm text-brand-300">
         Thank you! Your submission has been received.
       </p>
     );
