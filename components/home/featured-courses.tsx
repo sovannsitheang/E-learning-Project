@@ -7,8 +7,8 @@ export default async function FeaturedCourses() {
   let courses: Awaited<ReturnType<typeof getCourses>> = [];
   try {
     courses = await getCourses();
-  } catch {
-    // keep the section empty if the API is unreachable
+  } catch(err) {
+    console.error("Failed to fetch featured courses:", err);
   }
 
   const featured = courses.slice(0, 6);

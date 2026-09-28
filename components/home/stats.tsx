@@ -5,8 +5,8 @@ export default async function Stats() {
   let courses: Awaited<ReturnType<typeof getCourses>> = [];
   try {
     courses = await getCourses();
-  } catch {
-    // fall back to zeros if the API is unreachable
+  } catch(err) {
+    console.error("Failed to fetch stats data:", err);
   }
 
   const lessonCount = courses.reduce((sum, course) => sum + course.lessonCount, 0);
