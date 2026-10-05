@@ -40,7 +40,7 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
         </div>
       </section>
 
-      <section className="bg-slate-50 py-14">
+      <section className="bg-slate-50 dark:bg-slate-950 py-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <form action="/courses" method="get">
             <CourseSearch defaultQuery={q} />
@@ -52,11 +52,11 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
               title={`${filtered.length} course${filtered.length === 1 ? "" : "s"}`}
             />
             {unavailable ? (
-              <div className="mt-10 rounded-3xl border border-dashed border-slate-300 bg-white p-14 text-center">
-                <p className="text-lg font-semibold text-slate-900">
+              <div className="mt-10 rounded-3xl border border-dashed border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 p-14 text-center">
+                <p className="text-lg font-semibold text-slate-900 dark:text-slate-100">
                   Courses are temporarily unavailable
                 </p>
-                <p className="mt-1 text-sm text-slate-500">
+                <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
                   Please try again in a moment.
                 </p>
                 <Link
@@ -73,11 +73,11 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
                 ))}
               </div>
             ) : (
-              <div className="mt-10 rounded-3xl border border-dashed border-slate-300 bg-white p-14 text-center">
-                <p className="text-lg font-semibold text-slate-900">
+              <div className="mt-10 rounded-3xl border border-dashed border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 p-14 text-center">
+                <p className="text-lg font-semibold text-slate-900 dark:text-slate-100">
                   No courses found
                 </p>
-                <p className="mt-1 text-sm text-slate-500">
+                <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
                   Try a different keyword.
                 </p>
                 <Link

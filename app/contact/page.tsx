@@ -32,21 +32,21 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="bg-slate-50 py-20">
+      <section className="bg-slate-50 dark:bg-slate-950 py-20">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_1.4fr]">
           <div className="space-y-5">
             {contactMethods.map((method) => (
               <div
                 key={method.title}
-                className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
+                className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm"
               >
                 <div className="flex items-center gap-3">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-700/10 text-brand-700">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-700/10 text-brand-700 dark:text-brand-300">
                     <Icon name={method.icon} />
                   </span>
-                  <h2 className="font-semibold text-slate-900">{method.title}</h2>
+                  <h2 className="font-semibold text-slate-900 dark:text-slate-100">{method.title}</h2>
                 </div>
-                <div className=" space-y-0.5 pl-14 text-sm text-slate-600">
+                <div className=" space-y-0.5 pl-14 text-sm text-slate-600 dark:text-slate-400">
                   {method.lines.map((line) => (
                     <p key={line}>{line}</p>
                   ))}
@@ -55,7 +55,7 @@ export default function ContactPage() {
             ))}
           </div>
 
-          <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+          <div className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 shadow-sm">
             <SectionHeading
               title="Send us a message"
               description="We usually reply within two working days."
@@ -63,42 +63,42 @@ export default function ContactPage() {
             <form className="mt-8 space-y-5">
               <div className="grid gap-5 sm:grid-cols-2">
                 <label className="block">
-                  <span className="text-sm font-medium text-slate-700">Full name</span>
+                  <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Full name</span>
                   <input
                     type="text"
                     required
                     placeholder="Your name"
-                    className="mt-1.5 h-11 w-full rounded-xl border border-slate-300 bg-white px-4 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
+                    className="mt-1.5 h-11 w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 text-sm text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
                   />
                 </label>
                 <label className="block">
-                  <span className="text-sm font-medium text-slate-700">Email</span>
+                  <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Email</span>
                   <input
                     type="email"
                     required
                     placeholder="you@example.com"
-                    className="mt-1.5 h-11 w-full rounded-xl border border-slate-300 bg-white px-4 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
+                    className="mt-1.5 h-11 w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 text-sm text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
                   />
                 </label>
               </div>
               <label className="block">
-                <span className="text-sm font-medium text-slate-700">
+                <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
                   Subject
                 </span>
                 <input
                   type="text"
                   required
                   placeholder="How can we help?"
-                  className="mt-1.5 h-11 w-full rounded-xl border border-slate-300 bg-white px-4 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
+                  className="mt-1.5 h-11 w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 text-sm text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
                 />
               </label>
               <label className="block">
-                <span className="text-sm font-medium text-slate-700">Message</span>
+                <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Message</span>
                 <textarea
                   required
                   rows={6}
                   placeholder="Write your message..."
-                  className="mt-1.5 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
+                  className="mt-1.5 w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-3 text-sm text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
                 />
               </label>
               <button

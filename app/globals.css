@@ -1,11 +1,18 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #ffffff;
-  --foreground: #000000;
+  --foreground: #0f172a;
   --brand-600: #1f4d94;
   --brand-700: #193d77;
   --brand-800: #142f5c;
+}
+
+.dark {
+  --background: #0a1a33;
+  --foreground: #e2e8f0;
 }
 
 @theme inline {
@@ -18,8 +25,11 @@
   --color-brand-600: var(--brand-600);
   --color-brand-700: var(--brand-700);
   --color-brand-800: var(--brand-800);
+  --color-surface: #ffffff;
+  --color-surface-muted: #f8fafc;
   --color-honeydew: #eef4fb;
   --color-forest: #0a1a33;
+  --color-page: var(--background);
   --font-sans: var(--font-poppins);
   --font-serif: var(--font-playfair);
   --font-mono: var(--font-poppins);

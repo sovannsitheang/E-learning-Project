@@ -25,16 +25,16 @@ const features = [
 
 export default function AboutSection() {
   return (
-    <section className="bg-brand-100/50 py-20 sm:py-28">
+    <section className="bg-brand-100/50 py-20 sm:py-28 dark:bg-slate-900">
       <div className="mx-auto grid max-w-7xl items-center gap-14 px-4 sm:px-6 lg:grid-cols-2">
         <div>
-          <p className="text-sm font-medium uppercase tracking-widest text-brand-600">
+          <p className="text-sm font-medium uppercase tracking-widest text-brand-600 dark:text-brand-300">
             About G4-Learning
           </p>
-          <h2 className="mt-3 font-serif text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+          <h2 className="mt-3 font-serif text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl dark:text-slate-100">
             We provide complete learning facilities
           </h2>
-          <p className="mt-5 max-w-lg text-base leading-relaxed text-slate-600">
+          <p className="mt-5 max-w-lg text-base leading-relaxed text-slate-600 dark:text-slate-400">
             G4-Learning — from the Khmer words for &ldquo;digital learning&rdquo; — is a
             free e-Learning platform that delivers video lessons and digital
             exercises to students from primary to upper secondary school,
@@ -49,14 +49,14 @@ export default function AboutSection() {
           {features.map((feature) => (
             <div
               key={feature.title}
-              className="flex items-center gap-5 rounded-xl bg-white p-5 shadow-sm"
+              className="flex items-center gap-5 rounded-xl bg-white p-5 shadow-sm dark:bg-slate-950"
             >
-              <span className="flex h-13 w-13 shrink-0 items-center justify-center rounded-full bg-brand-600/15 text-brand-700">
+              <span className="flex h-13 w-13 shrink-0 items-center justify-center rounded-full bg-brand-600/15 text-brand-700 dark:text-brand-300">
                 <Icon name={feature.icon} />
               </span>
               <div>
-                <p className="font-semibold text-slate-900">{feature.title}</p>
-                <p className="mt-0.5 max-w-sm text-sm leading-relaxed text-slate-600">
+                <p className="font-semibold text-slate-900 dark:text-slate-100">{feature.title}</p>
+                <p className="mt-0.5 max-w-sm text-sm leading-relaxed text-slate-600 dark:text-slate-400">
                   {feature.text}
                 </p>
               </div>

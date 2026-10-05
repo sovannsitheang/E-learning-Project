@@ -7,9 +7,9 @@ import { createCourse, updateCourse } from "@/lib/api/courses";
 import type { Course } from "@/lib/types";
 
 const inputClass =
-  "mt-1.5 h-11 w-full rounded-xl border border-slate-300 bg-white px-4 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20";
+  "mt-1.5 h-11 w-full rounded-xl border border-slate-300 bg-white px-4 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:placeholder:text-slate-500";
 const textareaClass =
-  "mt-1.5 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20";
+  "mt-1.5 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:placeholder:text-slate-500";
 
 interface CourseFormModalProps {
   course?: Course | null;
@@ -58,13 +58,13 @@ export function CourseFormModal({ course, onClose }: CourseFormModalProps) {
         onClick={onClose}
         aria-hidden="true"
       />
-      <div className="relative w-full max-w-lg rounded-3xl border border-slate-200 bg-white p-8 shadow-xl">
-        <h2 className="text-xl font-bold tracking-tight text-slate-900">
+      <div className="relative w-full max-w-lg rounded-3xl border border-slate-200 bg-white p-8 shadow-xl dark:border-slate-800 dark:bg-slate-900">
+        <h2 className="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
           {editing ? "Edit course" : "Create course"}
         </h2>
         <form className="mt-6 space-y-5" onSubmit={handleSubmit}>
           <label className="block">
-            <span className="text-sm font-medium text-slate-700">Title</span>
+            <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Title</span>
             <input
               type="text"
               required
@@ -75,7 +75,7 @@ export function CourseFormModal({ course, onClose }: CourseFormModalProps) {
             />
           </label>
           <label className="block">
-            <span className="text-sm font-medium text-slate-700">Description</span>
+            <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Description</span>
             <textarea
               required
               value={description}
@@ -86,7 +86,7 @@ export function CourseFormModal({ course, onClose }: CourseFormModalProps) {
             />
           </label>
           <label className="block">
-            <span className="text-sm font-medium text-slate-700">Thumbnail URL</span>
+            <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Thumbnail URL</span>
             <input
               type="url"
               value={thumbnail}
@@ -98,7 +98,7 @@ export function CourseFormModal({ course, onClose }: CourseFormModalProps) {
           {error ? (
             <p
               role="alert"
-              className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
+              className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-800 dark:bg-red-950/50 dark:text-red-400"
             >
               {error}
             </p>
@@ -107,14 +107,14 @@ export function CourseFormModal({ course, onClose }: CourseFormModalProps) {
             <button
               type="button"
               onClick={onClose}
-              className="inline-flex h-11 items-center justify-center rounded-lg border border-slate-300 px-6 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50"
+              className="inline-flex h-11 items-center justify-center rounded-lg border border-slate-300 px-6 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={pending}
-              className="inline-flex h-11 items-center justify-center rounded-lg bg-brand-600 px-6 text-sm font-semibold text-white transition-colors hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-60"
+              className="inline-flex h-11 items-center justify-center rounded-lg bg-brand-600 px-6 text-sm font-semibold text-white transition-colors hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-brand-500"
             >
               {pending ? "Saving..." : editing ? "Save changes" : "Create course"}
             </button>
@@ -132,7 +132,7 @@ export function CreateCourseButton() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-brand-600 px-6 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
+        className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-brand-600 px-6 text-sm font-semibold text-white transition-colors hover:bg-brand-700 dark:bg-brand-500"
       >
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="h-4 w-4" aria-hidden="true">
           <path d="M12 5v14M5 12h14" strokeLinecap="round" />
