@@ -3,6 +3,7 @@ import { Poppins, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
+import { themeInitScript } from "@/lib/theme";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
@@ -48,8 +49,6 @@ export const metadata: Metadata = {
   },
 };
 
-const themeScript = `(function(){try{var t=localStorage.getItem("g4-theme");if(t!=="dark"&&t!=="light"){t="light"}document.documentElement.setAttribute("data-theme",t)}catch(e){}})()`;
-
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
@@ -59,7 +58,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${poppins.variable} ${playfair.variable} h-full antialiased`}
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body className="flex min-h-full flex-col">
         <Header />
