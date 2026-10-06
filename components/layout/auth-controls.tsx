@@ -1,12 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-import { clearSession } from "@/lib/auth";
-import { useAuthUser } from "@/lib/use-auth-user";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import {
+  clearSession,
+  getAuthUser,
+  setAuthHydrated,
+  subscribeAuth,
+} from "@/lib/auth";
+import type { AuthUser } from "@/lib/api/auth";
 
 const menuItemClass =
-  "block w-full rounded-lg px-3 py-2 text-left text-sm font-medium text-fg-secondary transition-colors hover:bg-accent-subtle hover:text-accent";
+  "block w-full rounded-lg px-3 py-2 text-left text-sm font-medium text-slate-700 transition-colors hover:bg-brand-100 hover:text-brand-700 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-white";
 
 function PersonIcon() {
   return (
@@ -27,9 +32,17 @@ function PersonIcon() {
 }
 
 export default function AuthControls() {
-  const user = useAuthUser();
+  const user = useSyncExternalStore<AuthUser | null>(
+    subscribeAuth,
+    getAuthUser,
+    () => null,
+  );
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setAuthHydrated();
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -52,6 +65,9 @@ export default function AuthControls() {
     };
   }, [open]);
 
+  const triggerClass =
+    "flex h-10 w-10 items-center justify-center rounded-full text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2";
+
   return (
     <div className="relative" ref={containerRef}>
       <button
@@ -60,10 +76,10 @@ export default function AuthControls() {
         aria-haspopup="menu"
         aria-expanded={open}
         aria-label={user ? "Account menu" : "Sign in menu"}
-        className={`flex h-10 w-10 items-center justify-center rounded-full text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-line focus-visible:ring-offset-2 focus-visible:ring-offset-surface ${
+        className={`${triggerClass} ${
           user
             ? "bg-brand-700 text-white hover:bg-brand-600"
-            : "border border-line text-fg-secondary hover:border-accent-line hover:text-accent"
+            : "border border-slate-200 text-slate-700 hover:border-brand-600 hover:text-brand-700 dark:border-slate-700 dark:text-slate-300 dark:hover:border-brand-300 dark:hover:text-brand-300"
         }`}
       >
         {user ? user.name.charAt(0).toUpperCase() : <PersonIcon />}
@@ -72,15 +88,15 @@ export default function AuthControls() {
       {open ? (
         <div
           role="menu"
-          className="absolute right-0 z-50 mt-2 w-56 rounded-xl border border-line bg-surface p-1.5 shadow-lg"
+          className="absolute right-0 z-50 mt-2 w-56 rounded-xl border border-slate-200 bg-white p-1.5 shadow-lg dark:border-slate-700 dark:bg-slate-900"
         >
           {user ? (
             <>
-              <div className="border-b border-line-soft px-3 pb-2 pt-1">
-                <p className="truncate text-sm font-semibold text-fg">
+              <div className="border-b border-slate-100 px-3 pb-2 pt-1 dark:border-slate-800">
+                <p className="truncate text-sm font-semibold text-slate-900 dark:text-slate-100">
                   {user.name}
                 </p>
-                <p className="text-xs capitalize text-fg-muted">{user.role}</p>
+                <p className="text-xs capitalize text-slate-500 dark:text-slate-400">{user.role}</p>
               </div>
 
               <div className="flex flex-col py-1">
@@ -106,7 +122,7 @@ export default function AuthControls() {
                     setOpen(false);
                     clearSession();
                   }}
-                  className={`${menuItemClass} text-danger hover:bg-danger-subtle`}
+                  className={`${menuItemClass} text-red-600 hover:bg-red-50 hover:text-red-700 dark:text-red-400 dark:hover:bg-red-950/50 dark:hover:text-red-300`}
                 >
                   Log out
                 </button>
@@ -114,9 +130,11 @@ export default function AuthControls() {
             </>
           ) : (
             <>
-              <div className="border-b border-line-soft px-3 pb-2 pt-1">
-                <p className="text-sm font-semibold text-fg">Welcome back</p>
-                <p className="text-xs text-fg-muted">
+              <div className="border-b border-slate-100 px-3 pb-2 pt-1 dark:border-slate-800">
+                <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                  Welcome back
+                </p>
+                <p className="text-xs text-slate-500 dark:text-slate-400">
                   Sign in to continue learning
                 </p>
               </div>
@@ -132,7 +150,7 @@ export default function AuthControls() {
                 <Link
                   href="/register"
                   onClick={() => setOpen(false)}
-                  className={`${menuItemClass} mt-1 inline-flex h-10 items-center justify-center bg-brand-600 text-white hover:bg-brand-700`}
+                  className={`${menuItemClass} text-brand-700 hover:bg-brand-100 hover:text-brand-800 dark:text-brand-300 dark:hover:bg-brand-800`}
                 >
                   Register
                 </Link>

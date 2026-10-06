@@ -1,93 +1,131 @@
 "use client";
 
 import { useState } from "react";
-import type { FormEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { login } from "@/lib/api/auth";
 import { saveSession } from "@/lib/auth";
 
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+
+const loginSchema = z.object({
+  email: z
+    .string()
+    .trim()
+    .min(1, "Email is required")
+    .email("Invalid Email"),
+  password: z
+    .string()
+    .min(8, "Password must be at least 8 characters"),
+});
+
+type LoginFormValues = z.infer<typeof loginSchema>;
+
 export default function LoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState<string | null>(null);
-  const [pending, setPending] = useState(false);
+  
+  const [apiError, setApiError] = useState<string | null>(null);
 
-  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setError(null);
-    setPending(true);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<LoginFormValues>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  async function onSubmit(data: LoginFormValues) {
+    setApiError(null);
     try {
-      const { user, token } = await login(email.trim(), password);
+      const { user, token } = await login(data.email, data.password);
       saveSession(user, token);
       router.push("/");
       router.refresh();
     } catch (err) {
-      setError(
-        err instanceof Error ? err.message : "Something went wrong. Please try again.",
+      setApiError(
+        err instanceof Error ? err.message : "Something went wrong. Please try again."
       );
-    } finally {
-      setPending(false);
     }
   }
 
   return (
-    <section className="flex flex-1 items-center justify-center bg-surface-muted px-4 py-16 sm:px-6">
+    <section className="flex flex-1 items-center justify-center bg-slate-50 dark:bg-slate-950 px-4 py-16 sm:px-6">
       <div className="w-full max-w-md">
-        <div className="rounded-3xl border border-line bg-surface p-8 shadow-sm">
+        <div className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 shadow-sm">
           <div className="text-center">
-            <h1 className="text-2xl font-bold tracking-tight text-fg">
+            <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
               Welcome back
             </h1>
-            <p className="mt-2 text-sm text-fg-muted">
+            <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
               Log in to continue your lessons.
             </p>
           </div>
-          <form className="mt-8 space-y-5" onSubmit={handleSubmit}>
+
+          <form className="mt-8 space-y-5" onSubmit={handleSubmit(onSubmit)}>
+            
             <label className="block">
-              <span className="text-sm font-medium text-fg-secondary">Email</span>
+              <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Email</span>
               <input
                 type="email"
-                required
                 autoComplete="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@example.com"
-                className="mt-1.5 h-11 w-full rounded-xl border border-line-strong bg-surface px-4 text-sm text-fg placeholder:text-fg-subtle focus:border-accent-line focus:outline-none focus:ring-2 focus:ring-accent-line/20"
+                {...register("email")}
+                className={`mt-1.5 h-11 w-full rounded-xl border bg-white dark:bg-slate-800 px-4 text-sm text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:ring-2 ${
+                  errors.email
+                    ? "border-red-500 focus:border-red-500 focus:ring-red-500/20"
+                    : "border-slate-300 dark:border-slate-700 focus:border-brand-500 focus:ring-brand-500/20"
+                }`}
               />
+              {errors.email && (
+                <p className="mt-1 text-sm text-red-500">{errors.email.message}</p>
+              )}
             </label>
+
             <label className="block">
-              <span className="text-sm font-medium text-fg-secondary">Password</span>
+              <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Password</span>
               <input
                 type="password"
-                required
                 autoComplete="current-password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
                 placeholder="Your password"
-                className="mt-1.5 h-11 w-full rounded-xl border border-line-strong bg-surface px-4 text-sm text-fg placeholder:text-fg-subtle focus:border-accent-line focus:outline-none focus:ring-2 focus:ring-accent-line/20"
+                {...register("password")}
+                className={`mt-1.5 h-11 w-full rounded-xl border bg-white dark:bg-slate-800 px-4 text-sm text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:ring-2 ${
+                  errors.password
+                    ? "border-red-500 focus:border-red-500 focus:ring-red-500/20"
+                    : "border-slate-300 dark:border-slate-700 focus:border-brand-500 focus:ring-brand-500/20"
+                }`}
               />
+              {errors.password && (
+                <p className="mt-1 text-sm text-red-500">{errors.password.message}</p>
+              )}
             </label>
-            {error ? (
+
+            {apiError && (
               <p
                 role="alert"
-                className="rounded-xl border border-danger-line bg-danger-subtle px-4 py-3 text-sm text-danger"
+                className="rounded-xl border border-red-200 bg-red-50 dark:bg-red-950/50 px-4 py-3 text-sm text-red-700 dark:text-red-300"
               >
-                {error}
+                {apiError}
               </p>
-            ) : null}
+            )}
+
             <button
               type="submit"
-              disabled={pending}
+              disabled={isSubmitting} 
               className="inline-flex h-12 w-full items-center justify-center rounded-full bg-brand-700 text-sm font-semibold text-white transition-colors hover:bg-brand-800 disabled:cursor-not-allowed disabled:opacity-60"
             >
-              {pending ? "Logging in..." : "Log in"}
+              {isSubmitting ? "Logging in..." : "Log in"}
             </button>
           </form>
-          <p className="mt-6 text-center text-sm text-fg-muted">
+
+          <p className="mt-6 text-center text-sm text-slate-500 dark:text-slate-400">
             Don&apos;t have an account?{" "}
-            <Link href="/register" className="font-semibold text-accent hover:underline">
+            <Link href="/register" className="font-semibold text-brand-700 dark:text-brand-300 hover:underline">
               Register
             </Link>
           </p>

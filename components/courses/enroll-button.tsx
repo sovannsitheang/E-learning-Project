@@ -27,7 +27,7 @@ export default function EnrollButton({ courseId }: { courseId: string }) {
     return (
       <Link
         href="/login"
-        className="mt-7 inline-flex h-11 w-full items-center justify-center rounded-lg bg-brand-600 px-6 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
+        className="mt-7 inline-flex h-11 w-full items-center justify-center rounded-lg bg-brand-600 px-6 text-sm font-semibold text-white transition-colors hover:bg-brand-700 dark:bg-brand-500"
       >
         Enroll Now
       </Link>
@@ -65,7 +65,7 @@ export default function EnrollButton({ courseId }: { courseId: string }) {
       {error ? (
         <p
           role="alert"
-          className="mb-3 rounded-xl border border-danger-line bg-danger-subtle px-4 py-3 text-sm text-danger"
+          className="mb-3 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
         >
           {error}
         </p>
@@ -86,7 +86,7 @@ export default function EnrollButton({ courseId }: { courseId: string }) {
           <button
             type="button"
             onClick={handleUnenroll}
-            className="mt-2 inline-flex h-10 w-full cursor-pointer items-center justify-center rounded-lg border border-line-strong px-6 text-sm font-medium text-fg-muted transition-colors hover:border-danger-line hover:bg-danger-subtle hover:text-danger"
+            className="mt-2 inline-flex h-10 w-full cursor-pointer items-center justify-center rounded-lg border border-slate-300 px-6 text-sm font-medium text-slate-600 transition-colors hover:border-red-300 hover:bg-red-50 hover:text-red-700 dark:border-slate-700 dark:text-slate-400"
           >
             Remove from My Courses
           </button>
@@ -96,7 +96,7 @@ export default function EnrollButton({ courseId }: { courseId: string }) {
           type="button"
           onClick={handleEnroll}
           disabled={pending}
-          className={`${buttonClass} mt-0 w-full cursor-pointer bg-brand-600 text-white hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-60`}
+          className={`${buttonClass} mt-0 w-full cursor-pointer bg-brand-600 text-white hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-brand-500`}
         >
           {pending ? "Enrolling..." : "Enroll Now"}
         </button>

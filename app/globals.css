@@ -1,51 +1,18 @@
 @import "tailwindcss";
 
-:root {
-  color-scheme: light;
+@custom-variant dark (&:where(.dark, .dark *));
 
+:root {
   --background: #ffffff;
-  --foreground: #000000;
+  --foreground: #0f172a;
   --brand-600: #1f4d94;
   --brand-700: #193d77;
   --brand-800: #142f5c;
-
-  --surface: #ffffff;
-  --surface-muted: #f8fafc;
-  --fg: #0f172a;
-  --fg-secondary: #334155;
-  --fg-muted: #64748b;
-  --fg-subtle: #94a3b8;
-  --line-soft: #f1f5f9;
-  --line: #e2e8f0;
-  --line-strong: #cbd5e1;
-  --accent: #1f4d94;
-  --accent-hover: #193d77;
-  --accent-subtle: #d9e4f5;
-  --accent-line: #3b6fc4;
-  --danger: #b91c1c;
-  --danger-subtle: #fef2f2;
-  --danger-line: #fecaca;
 }
 
-[data-theme="dark"] {
-  color-scheme: dark;
-
-  --surface: #0a1a33;
-  --surface-muted: #0e2445;
-  --fg: #e6edf8;
-  --fg-secondary: #c2d0e4;
-  --fg-muted: #8fa6c6;
-  --fg-subtle: #6b83a6;
-  --line-soft: #142c4c;
-  --line: #1c3a63;
-  --line-strong: #2b4d7d;
-  --accent: #7fb0f0;
-  --accent-hover: #a8c8f7;
-  --accent-subtle: #17335c;
-  --accent-line: #3b6fc4;
-  --danger: #fca5a5;
-  --danger-subtle: #3a1620;
-  --danger-line: #7f2b34;
+.dark {
+  --background: #0a1a33;
+  --foreground: #e2e8f0;
 }
 
 @theme inline {
@@ -58,24 +25,11 @@
   --color-brand-600: var(--brand-600);
   --color-brand-700: var(--brand-700);
   --color-brand-800: var(--brand-800);
+  --color-surface: #ffffff;
+  --color-surface-muted: #f8fafc;
   --color-honeydew: #eef4fb;
   --color-forest: #0a1a33;
-  --color-surface: var(--surface);
-  --color-surface-muted: var(--surface-muted);
-  --color-fg: var(--fg);
-  --color-fg-secondary: var(--fg-secondary);
-  --color-fg-muted: var(--fg-muted);
-  --color-fg-subtle: var(--fg-subtle);
-  --color-line-soft: var(--line-soft);
-  --color-line: var(--line);
-  --color-line-strong: var(--line-strong);
-  --color-accent: var(--accent);
-  --color-accent-hover: var(--accent-hover);
-  --color-accent-subtle: var(--accent-subtle);
-  --color-accent-line: var(--accent-line);
-  --color-danger: var(--danger);
-  --color-danger-subtle: var(--danger-subtle);
-  --color-danger-line: var(--danger-line);
+  --color-page: var(--background);
   --font-sans: var(--font-poppins);
   --font-serif: var(--font-playfair);
   --font-mono: var(--font-poppins);
@@ -90,10 +44,9 @@ button:not(:disabled) {
 }
 
 body {
-  background: var(--surface);
-  color: var(--fg);
+  background: var(--background);
+  color: var(--foreground);
   font-family: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
-  transition: background-color 200ms ease, color 200ms ease;
 }
 
 .line-clamp-2 {

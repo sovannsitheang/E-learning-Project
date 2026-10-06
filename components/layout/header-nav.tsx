@@ -4,7 +4,7 @@ import Link from "next/link";
 import { navItems } from "@/lib/utils";
 
 const menuItemClass =
-  "block rounded-lg px-3 py-2 text-sm font-medium text-fg-secondary transition-colors hover:bg-accent-subtle hover:text-accent";
+  "block rounded-lg px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-brand-100 hover:text-brand-700 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-white";
 
 export default function HeaderNav() {
   return (
@@ -19,7 +19,7 @@ export default function HeaderNav() {
 
       <nav className="md:hidden">
         <details className="group relative">
-          <summary className="flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-lg border border-line text-fg-secondary transition-colors hover:border-accent-line hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-line [&::-webkit-details-marker]:hidden">
+          <summary className="flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-lg text-slate-700 transition-colors hover:bg-brand-100 hover:text-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-white [&::-webkit-details-marker]:hidden">
             <span className="sr-only">Open navigation menu</span>
             <svg
               viewBox="0 0 24 24"
@@ -44,7 +44,7 @@ export default function HeaderNav() {
               <path d="M6 6l12 12M18 6L6 18" />
             </svg>
           </summary>
-          <div className="absolute right-0 z-50 mt-2 w-52 rounded-xl border border-line bg-surface p-1.5 shadow-lg">
+          <div className="absolute right-0 z-50 mt-2 w-52 rounded-xl border border-slate-200 bg-white p-1.5 shadow-lg dark:border-slate-700 dark:bg-slate-900">
             {navItems.map((item) => (
               <Link key={item.href} href={item.href} className={menuItemClass}>
                 {item.label}

@@ -1,10 +1,10 @@
 export type Theme = "light" | "dark";
 
-const THEME_KEY = "g4-theme";
-const DARK_QUERY = "(prefers-color-scheme: dark)";
+const STORAGE_KEY = "g4-theme";
 
 const listeners = new Set<() => void>();
-let listeningToSystem = false;
+let cachedTheme: Theme | null = null;
+let hydrated = false;
 
 function notify() {
   for (const listener of listeners) listener();
@@ -12,7 +12,7 @@ function notify() {
 
 function readStoredTheme(): Theme | null {
   try {
-    const raw = localStorage.getItem(THEME_KEY);
+    const raw = localStorage.getItem(STORAGE_KEY);
     return raw === "light" || raw === "dark" ? raw : null;
   } catch {
     return null;
@@ -21,59 +21,67 @@ function readStoredTheme(): Theme | null {
 
 function systemTheme(): Theme {
   if (typeof window === "undefined") return "light";
-  return window.matchMedia(DARK_QUERY).matches ? "dark" : "light";
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+}
+
+function resolveTheme(): Theme {
+  return cachedTheme ?? readStoredTheme() ?? systemTheme();
 }
 
 function applyTheme(theme: Theme) {
-  document.documentElement.setAttribute("data-theme", theme);
-}
-
-function handleSystemChange() {
-  // an explicit choice always wins over the OS setting
-  if (readStoredTheme()) return;
-  applyTheme(systemTheme());
-  notify();
+  const root = document.documentElement;
+  root.classList.toggle("dark", theme === "dark");
+  root.style.colorScheme = theme;
 }
 
 export function subscribeTheme(listener: () => void): () => void {
   listeners.add(listener);
+  if (!hydrated) {
+    hydrated = true;
+    cachedTheme = null;
+    applyTheme(resolveTheme());
 
-  if (!listeningToSystem) {
-    listeningToSystem = true;
-    window.matchMedia(DARK_QUERY).addEventListener(
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener(
       "change",
       handleSystemChange,
     );
   }
-
   return () => {
     listeners.delete(listener);
   };
 }
 
-export function getTheme(): Theme {
-  if (typeof document === "undefined") return "light";
-  return document.documentElement.getAttribute("data-theme") === "dark"
-    ? "dark"
-    : "light";
+function handleSystemChange() {
+  if (readStoredTheme()) return;
+  cachedTheme = null;
+  applyTheme(resolveTheme());
+  notify();
 }
 
-export function getServerTheme(): Theme {
+export function getThemeSnapshot(): Theme {
+  if (typeof localStorage === "undefined" || !hydrated) return "light";
+  return resolveTheme();
+}
+
+export function getThemeServerSnapshot(): Theme {
   return "light";
 }
 
 export function setTheme(theme: Theme): void {
-  applyTheme(theme);
+  cachedTheme = theme;
   try {
-    localStorage.setItem(THEME_KEY, theme);
+    localStorage.setItem(STORAGE_KEY, theme);
   } catch {
-    // ignore storage failures, the attribute is already applied
+    // storage unavailable, theme still applies for this session
   }
+  applyTheme(theme);
   notify();
 }
 
 export function toggleTheme(): void {
-  setTheme(getTheme() === "dark" ? "light" : "dark");
+  setTheme(getThemeSnapshot() === "dark" ? "light" : "dark");
 }
 
-export const themeInitScript = `(function(){try{var t=localStorage.getItem("${THEME_KEY}");if(t!=="light"&&t!=="dark"){t=window.matchMedia("${DARK_QUERY}").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){}})();`;
+export const themeInitScript = `(function(){try{var t=localStorage.getItem("${STORAGE_KEY}");if(t!=="light"&&t!=="dark"){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}var r=document.documentElement;r.classList.toggle("dark",t==="dark");r.style.colorScheme=t}catch(e){}})();`;

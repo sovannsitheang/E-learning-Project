@@ -28,18 +28,18 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-surface py-20">
+      <section className="bg-white dark:bg-slate-950 py-20">
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
           <SectionHeading
             center
             eyebrow="Who we are"
             title="Digital learning for every Cambodian child"
           />
-          <div className="mt-10 space-y-5 text-base leading-relaxed text-fg-muted">
+          <div className="mt-10 space-y-5 text-base leading-relaxed text-slate-600 dark:text-slate-400">
             <p>
               G4-Learning — a name that blends the Khmer words for{" "}
-              <strong className="font-semibold text-fg">digital</strong>{" "}
-              and <strong className="font-semibold text-fg">learning</strong> —
+              <strong className="font-semibold text-slate-900 dark:text-slate-100">digital</strong>{" "}
+              and <strong className="font-semibold text-slate-900 dark:text-slate-100">learning</strong> —
               is an e-Learning platform offering free courses for students
               across Cambodia.
             </p>
@@ -60,7 +60,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-surface-muted py-20">
+      <section className="bg-slate-50 dark:bg-slate-950 py-20">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <SectionHeading
             center
@@ -69,7 +69,7 @@ export default function AboutPage() {
           />
           <div className="mt-12">
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              <div className="col-start-1 sm:col-start-1 lg:col-start-2 flex items-center gap-4 rounded-2xl border border-line bg-surface p-5 shadow-sm">
+              <div className="col-start-1 sm:col-start-1 lg:col-start-2 flex items-center gap-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-sm">
                 {leader.image ? (
                   <Image
                     src={leader.image}
@@ -79,7 +79,7 @@ export default function AboutPage() {
                     className="h-12 w-12 shrink-0 rounded-full object-cover"
                   />
                 ) : (
-                  <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent-subtle font-bold text-accent">
+                  <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-700/10 font-bold text-brand-700 dark:text-brand-300">
                     {leader.name
                       .split(" ")
                       .map((word) => word[0])
@@ -87,14 +87,14 @@ export default function AboutPage() {
                   </span>
                 )}
                 <div>
-                  <h3 className="font-semibold text-fg">{leader.name}</h3>
-                  <p className="mt-0.5 text-sm font-medium text-accent">
+                  <h3 className="font-semibold text-slate-900 dark:text-slate-100">{leader.name}</h3>
+                  <p className="mt-0.5 text-sm font-medium text-brand-700 dark:text-brand-300">
                     {leader.role}
                   </p>
-                  <p className="mt-0.5 text-sm font-medium text-accent">
+                  <p className="mt-0.5 text-sm font-medium text-brand-700 dark:text-brand-300">
                     {leader.role2}
                   </p>
-                  <p className="mt-0.5 text-sm font-medium text-accent">
+                  <p className="mt-0.5 text-sm font-medium text-brand-700 dark:text-brand-300">
                     {leader.role3}
                   </p>
                 </div>
@@ -105,7 +105,7 @@ export default function AboutPage() {
               {otherMembers.map((member) => (
                 <div
                   key={member.name}
-                  className="flex items-center gap-4 rounded-2xl border border-line bg-surface p-5 shadow-sm"
+                  className="flex items-center gap-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-sm"
                 >
                   {member.image ? (
                     <Image
@@ -116,7 +116,7 @@ export default function AboutPage() {
                       className="h-12 w-12 shrink-0 rounded-full object-cover"
                     />
                   ) : (
-                    <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent-subtle font-bold text-accent">
+                    <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-700/10 font-bold text-brand-700 dark:text-brand-300">
                       {member.name
                         .split(" ")
                         .map((word) => word[0])
@@ -124,11 +124,11 @@ export default function AboutPage() {
                     </span>
                   )}
                   <div>
-                    <h3 className="font-semibold text-fg">
+                    <h3 className="font-semibold text-slate-900 dark:text-slate-100">
                       {member.name}
                     </h3>
                     {member.role ? (
-                      <p className="mt-0.5 text-sm font-medium text-accent">
+                      <p className="mt-0.5 text-sm font-medium text-brand-700 dark:text-brand-300">
                         {member.role}
                       </p>
                     ) : null}

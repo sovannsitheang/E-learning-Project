@@ -12,9 +12,9 @@ import {
 import type { Lesson } from "@/lib/types";
 
 const inputClass =
-  "mt-1.5 h-11 w-full rounded-xl border border-line-strong bg-surface px-4 text-sm text-fg placeholder:text-fg-subtle focus:border-accent-line focus:outline-none focus:ring-2 focus:ring-accent-line/20";
+  "mt-1.5 h-11 w-full rounded-xl border border-slate-300 bg-white px-4 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:placeholder:text-slate-500";
 const textareaClass =
-  "mt-1.5 w-full rounded-xl border border-line-strong bg-surface px-4 py-3 text-sm text-fg placeholder:text-fg-subtle focus:border-accent-line focus:outline-none focus:ring-2 focus:ring-accent-line/20";
+  "mt-1.5 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:placeholder:text-slate-500";
 
 interface LessonManagerProps {
   courseId: string;
@@ -129,7 +129,7 @@ export default function LessonManager({
       {error ? (
         <p
           role="alert"
-          className="rounded-xl border border-danger-line bg-danger-subtle px-4 py-3 text-sm text-danger"
+          className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-800 dark:bg-red-950/50 dark:text-red-400"
         >
           {error}
         </p>
@@ -137,15 +137,15 @@ export default function LessonManager({
       {uploadMessage ? (
         <p
           role="status"
-          className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700"
+          className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700 dark:border-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-400"
         >
           {uploadMessage}
         </p>
       ) : null}
 
-      <section className="rounded-3xl border border-line bg-surface p-6 shadow-sm">
-        <h2 className="text-lg font-bold text-fg">Course lessons</h2>
-        <p className="mt-1 text-sm text-fg-muted">
+      <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+        <h2 className="text-lg font-bold text-slate-900 dark:text-slate-100">Course lessons</h2>
+        <p className="mt-1 text-sm text-slate-500">
           {lessons.length} lesson{lessons.length === 1 ? "" : "s"} published.
         </p>
         {lessons.length > 0 ? (
@@ -154,7 +154,7 @@ export default function LessonManager({
               editingId === lesson.id ? (
                 <li
                   key={lesson.id}
-                  className="rounded-2xl border border-accent-line bg-accent-subtle/50 p-4"
+                  className="rounded-2xl border border-brand-200 bg-brand-50/50 p-4 dark:border-brand-800 dark:bg-brand-950/30"
                 >
                   <input
                     type="text"
@@ -174,7 +174,7 @@ export default function LessonManager({
                     <button
                       type="button"
                       onClick={() => setEditingId(null)}
-                      className="inline-flex h-10 items-center justify-center rounded-lg border border-line-strong px-4 text-sm font-medium text-fg-secondary transition-colors hover:bg-surface-muted"
+                      className="inline-flex h-10 items-center justify-center rounded-lg border border-slate-300 px-4 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
                     >
                       Cancel
                     </button>
@@ -182,7 +182,7 @@ export default function LessonManager({
                       type="button"
                       onClick={() => handleSaveEdit(lesson.id)}
                       disabled={savingEdit}
-                      className="inline-flex h-10 items-center justify-center rounded-lg bg-brand-600 px-4 text-sm font-semibold text-white transition-colors hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-60"
+                      className="inline-flex h-10 items-center justify-center rounded-lg bg-brand-600 px-4 text-sm font-semibold text-white transition-colors hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-brand-500"
                     >
                       {savingEdit ? "Saving..." : "Save"}
                     </button>
@@ -191,14 +191,14 @@ export default function LessonManager({
               ) : (
                 <li
                   key={lesson.id}
-                  className="rounded-2xl border border-line-soft bg-surface-muted p-4"
+                  className="rounded-2xl border border-slate-100 bg-slate-50 p-4 dark:border-slate-800 dark:bg-slate-950"
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div className="min-w-0">
-                      <p className="text-sm font-semibold text-fg">
+                      <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">
                         Lesson {index + 1}: {lesson.title}
                       </p>
-                      <p className="mt-1 text-sm leading-relaxed text-fg-muted">
+                      <p className="mt-1 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
                         {lesson.content}
                       </p>
                     </div>
@@ -206,14 +206,14 @@ export default function LessonManager({
                       <button
                         type="button"
                         onClick={() => startEdit(lesson)}
-                        className="inline-flex h-9 items-center justify-center rounded-lg border border-line-strong px-3 text-xs font-medium text-fg-secondary transition-colors hover:border-accent-line hover:text-accent"
+                        className="inline-flex h-9 items-center justify-center rounded-lg border border-slate-300 px-3 text-xs font-medium text-slate-700 transition-colors hover:border-brand-600 hover:text-brand-700 dark:border-slate-700 dark:text-slate-300 dark:hover:text-brand-300"
                       >
                         Edit
                       </button>
                       <button
                         type="button"
                         onClick={() => handleDeleteLesson(lesson)}
-                        className="inline-flex h-9 items-center justify-center rounded-lg border border-danger-line px-3 text-xs font-medium text-danger transition-colors hover:border-danger-line hover:bg-danger-subtle"
+                        className="inline-flex h-9 items-center justify-center rounded-lg border border-red-200 px-3 text-xs font-medium text-red-700 transition-colors hover:border-red-300 hover:bg-red-50 dark:border-red-800 dark:text-red-400 dark:hover:bg-red-950/50"
                       >
                         Delete
                       </button>
@@ -224,17 +224,17 @@ export default function LessonManager({
             )}
           </ul>
         ) : (
-          <p className="mt-5 rounded-2xl border border-dashed border-line p-4 text-sm text-fg-muted">
+          <p className="mt-5 rounded-2xl border border-dashed border-slate-200 p-4 text-sm text-slate-500 dark:border-slate-700 dark:text-slate-400">
             No lessons yet. Add the first lesson below.
           </p>
         )}
       </section>
 
-      <section className="rounded-3xl border border-line bg-surface p-6 shadow-sm">
-        <h2 className="text-lg font-bold text-fg">Add a lesson</h2>
+      <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+        <h2 className="text-lg font-bold text-slate-900 dark:text-slate-100">Add a lesson</h2>
         <form className="mt-4 space-y-4" onSubmit={handleAddLesson}>
           <label className="block">
-            <span className="text-sm font-medium text-fg-secondary">Title</span>
+            <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Title</span>
             <input
               type="text"
               required
@@ -245,7 +245,7 @@ export default function LessonManager({
             />
           </label>
           <label className="block">
-            <span className="text-sm font-medium text-fg-secondary">Content</span>
+            <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Content</span>
             <textarea
               required
               value={content}
@@ -258,21 +258,21 @@ export default function LessonManager({
           <button
             type="submit"
             disabled={adding}
-            className="inline-flex h-11 items-center justify-center rounded-lg bg-brand-600 px-6 text-sm font-semibold text-white transition-colors hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-60"
+            className="inline-flex h-11 items-center justify-center rounded-lg bg-brand-600 px-6 text-sm font-semibold text-white transition-colors hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-brand-500"
           >
             {adding ? "Adding..." : "Add lesson"}
           </button>
         </form>
       </section>
 
-      <section className="rounded-3xl border border-line bg-surface p-6 shadow-sm">
-        <h2 className="text-lg font-bold text-fg">Course materials</h2>
-        <p className="mt-1 text-sm text-fg-muted">
+      <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+        <h2 className="text-lg font-bold text-slate-900 dark:text-slate-100">Course materials</h2>
+        <p className="mt-1 text-sm text-slate-500">
           {materials} material{materials === 1 ? "" : "s"} uploaded.
         </p>
         <form className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-end" onSubmit={handleUpload}>
           <label className="block flex-1">
-            <span className="text-sm font-medium text-fg-secondary">File</span>
+            <span className="text-sm font-medium text-slate-700 dark:text-slate-300">File</span>
             <input
               type="file"
               name="materials"
@@ -283,7 +283,7 @@ export default function LessonManager({
           <button
             type="submit"
             disabled={uploading}
-            className="inline-flex h-11 items-center justify-center rounded-lg bg-brand-600 px-6 text-sm font-semibold text-white transition-colors hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-60"
+            className="inline-flex h-11 items-center justify-center rounded-lg bg-brand-600 px-6 text-sm font-semibold text-white transition-colors hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-brand-500"
           >
             {uploading ? "Uploading..." : "Upload material"}
           </button>

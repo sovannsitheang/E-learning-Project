@@ -13,14 +13,14 @@ export default function CourseSearch({ defaultQuery = "" }: CourseSearchProps) {
           type="text"
           defaultValue={defaultQuery}
           placeholder="Search courses..."
-          className="h-12 w-full rounded-full border border-line-strong bg-surface px-5 pl-11 text-sm text-fg placeholder:text-fg-subtle focus:border-accent-line focus:outline-none focus:ring-2 focus:ring-accent-line/20"
+          className="h-12 w-full rounded-full border border-slate-300 bg-white px-5 pl-11 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:placeholder:text-slate-500"
         />
         <svg
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
           strokeWidth="2"
-          className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-fg-subtle"
+          className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400 dark:text-slate-500"
           aria-hidden="true"
         >
           <circle cx="11" cy="11" r="7" />
